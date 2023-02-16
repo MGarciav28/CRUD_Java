@@ -14,6 +14,5 @@ public class CRUDMVC {
     public static void main(String[] args) {
      Conexion nueva = new Conexion(); 
      nueva.getConexion();
-    }
-    
+    }    
 }
