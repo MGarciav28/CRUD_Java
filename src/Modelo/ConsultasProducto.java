@@ -48,8 +48,8 @@ public class ConsultasProducto extends Conexion{
 /*FUNCION PARA MODIFICAR PRODUCTOS*/    
     
 public boolean modificar(Producto pro){
-    PreparedStatement ps =null;
-    Connection con =getConexion();
+    PreparedStatement ps=null;
+    Connection con=getConexion();
     
     String sql = "UPDATE producto SET codigo=?, nombre=?, precio=?, cantidad=? WHERE id=?";
     
@@ -73,6 +73,31 @@ public boolean modificar(Producto pro){
         }
     }
 }
+/*FIN DE MODIFICAR PRODUCTO*/
 
-/*FIN DE MODIFICAR PRODUCTO
+/*FUNCION PARA ELIMINAR REGISTROS*/
+
+public boolean eliminar(Producto pro){
+    PreparedStatement ps=null;
+    Connection con=getConexion();
+    
+    String sql = "DELETE FROM producto WHERE id=?";
+    
+    try{
+        ps=con.prepareStatement(sql);
+        ps.setInt(1, pro.getId());
+        ps.execute();
+        return true;
+    }catch(SQLException e){
+        System.err.println(e);
+        return false;
+    }finally{
+        try{
+            con.close();            
+        }catch(SQLException e){
+            System.err.println(e);
+        }
+    }
+}/*FINAL DE FUNCION ELIMINAR PRODUCTO*/
+
 }
